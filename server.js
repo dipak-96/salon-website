@@ -7,7 +7,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// 👇 static frontend serve karega
+// static files
 app.use(express.static(path.join(__dirname, 'public')));
 
 let bookings = [];
@@ -25,6 +25,9 @@ app.post('/book', (req, res) => {
     res.json({ message: "Booking saved successfully" });
 });
 
-app.listen(3000, () => {
-    console.log("Server running on http://localhost:3000");
+// 🔥 IMPORTANT CHANGE
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });
